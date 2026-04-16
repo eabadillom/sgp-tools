@@ -13,6 +13,7 @@ Este proyecto sigue versionado semántico (SemVer) y el formato de [Keep a Chang
 
 ### Maintenance
 - **CI/CD:** Implementado pipeline automatizado de compilación y despliegue a GitHub Packages.
+- Se agrega entrada al pom.xml para indicar despliegue en Github Packages para **CI/CD**.
 
 ## Nota
 Los cambios previos a esta versión (desde el inicio del proyecto) no están documentados por tratarse de la fase inicial de desarrollo.
