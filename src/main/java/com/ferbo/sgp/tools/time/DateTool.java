@@ -72,6 +72,8 @@ private static Logger log = LogManager.getLogger(DateTool.class);
 	public static String[] PROP_DIA_SEMANA = {PROP_CD_DOMINGO, PROP_CD_LUNES, PROP_CD_MARTES, PROP_CD_MIERCOLES, PROP_CD_JUEVES, PROP_CD_VIERNES, PROP_CD_SABADO}; 
 	
 	public static final String KEY_SEPARADOR_DIA = " ";//Para lectura del .properties
+
+	private static final ZoneId ZONA_MEXICO = ZoneId.of("America/Mexico_City");
 	
 	public static Date now() {
 		Date resultado = null;
@@ -723,5 +725,14 @@ private static Logger log = LogManager.getLogger(DateTool.class);
 			resultado = null;
 		}
 		return resultado;
+	}
+
+	public static Date getMananaDateMexico() {
+		return Date.from(
+			LocalDate.now(ZONA_MEXICO)
+				.plusDays(1)
+				.atStartOfDay(ZONA_MEXICO)
+				.toInstant()
+		);
 	}
 }
