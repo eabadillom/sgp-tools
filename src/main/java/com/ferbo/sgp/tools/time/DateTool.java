@@ -752,4 +752,10 @@ private static Logger log = LogManager.getLogger(DateTool.class);
 			return false;
 		}
 	}
+
+	public static String[] getPROP_DIA_SEMANA() {
+		return PROP_DIA_SEMANA;
+	}
+
+	
 }
