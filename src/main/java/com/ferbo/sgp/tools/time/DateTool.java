@@ -7,9 +7,11 @@ import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.ZoneOffset;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.List;
 import java.util.Locale;
 import java.util.TimeZone;
 
@@ -73,6 +75,8 @@ private static Logger log = LogManager.getLogger(DateTool.class);
 	
 	public static String[] PROP_DIA_SEMANA = {PROP_CD_DOMINGO, PROP_CD_LUNES, PROP_CD_MARTES, PROP_CD_MIERCOLES, PROP_CD_JUEVES, PROP_CD_VIERNES, PROP_CD_SABADO}; 
 	
+	private  static final List<String> diasSemana = Arrays.asList(PROP_DIA_SEMANA);
+
 	public static final String KEY_SEPARADOR_DIA = " ";//Para lectura del .properties
 	
 	public static Date now() {
@@ -753,9 +757,8 @@ private static Logger log = LogManager.getLogger(DateTool.class);
 		}
 	}
 
-	public static String[] getPROP_DIA_SEMANA() {
-		return PROP_DIA_SEMANA;
+	public static List<String> getDiassemana() {
+		return diasSemana;
 	}
-
 	
 }
