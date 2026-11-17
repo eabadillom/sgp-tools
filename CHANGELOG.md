@@ -11,7 +11,7 @@ Este proyecto sigue versionado semántico (SemVer) y el formato de [Keep a Chang
 * En DateTool se agrega:
     * getMananaDatePorZonaHoraria(String zonaHoraria) para obtener la fecha del día siguiente según la zona horaria especificada.
     * validarZonaHoraria(String zona) para validar zonas horarias.
-    * getDiassemana() para tener acceso a las claves de los días de la semana.
+    * getDiasSemana() para tener acceso a las claves de los días de la semana.
 
 
 ## [0.0.2] - 2026-04-16

@@ -757,7 +757,7 @@ private static Logger log = LogManager.getLogger(DateTool.class);
 		}
 	}
 
-	public static List<String> getDiassemana() {
+	public static List<String> getDiasSemana() {
 		return diasSemana;
 	}
 	
