@@ -3,11 +3,15 @@ package com.ferbo.sgp.tools.time;
 import java.math.BigDecimal;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.time.ZoneOffset;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.List;
 import java.util.Locale;
 import java.util.TimeZone;
 
@@ -71,6 +75,8 @@ private static Logger log = LogManager.getLogger(DateTool.class);
 	
 	public static String[] PROP_DIA_SEMANA = {PROP_CD_DOMINGO, PROP_CD_LUNES, PROP_CD_MARTES, PROP_CD_MIERCOLES, PROP_CD_JUEVES, PROP_CD_VIERNES, PROP_CD_SABADO}; 
 	
+	private  static final List<String> diasSemana = Arrays.asList(PROP_DIA_SEMANA);
+
 	public static final String KEY_SEPARADOR_DIA = " ";//Para lectura del .properties
 	
 	public static Date now() {
@@ -724,4 +730,35 @@ private static Logger log = LogManager.getLogger(DateTool.class);
 		}
 		return resultado;
 	}
+
+	public static Date getMananaDatePorZonaHoraria(String zonaHoraria) throws SGPException {
+		if (!validarZonaHoraria(zonaHoraria)) {
+			throw new SGPException("Formato de la zona horaria inválido");
+		}
+		ZoneOffset zoneOffset = ZoneOffset.of(zonaHoraria.substring(3));
+		return Date.from(
+			LocalDate.now(zoneOffset)
+				.plusDays(1)
+				.atStartOfDay(zoneOffset)
+				.toInstant()
+		);
+	}
+
+	public static boolean validarZonaHoraria(String zona) {
+		if (zona == null || !zona.matches("^GMT[+-]\\d{2}:\\d{2}$")) {
+			return false;
+		}
+
+		try {
+			ZoneOffset.of(zona.substring(3));
+			return true;
+		} catch (DateTimeException e) {
+			return false;
+		}
+	}
+
+	public static List<String> getDiasSemana() {
+		return diasSemana;
+	}
+	
 }
