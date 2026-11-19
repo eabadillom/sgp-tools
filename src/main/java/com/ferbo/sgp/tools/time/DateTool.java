@@ -731,30 +731,11 @@ private static Logger log = LogManager.getLogger(DateTool.class);
 		return resultado;
 	}
 
-	public static Date getMananaDatePorZonaHoraria(String zonaHoraria) throws SGPException {
-		if (!validarZonaHoraria(zonaHoraria)) {
-			throw new SGPException("Formato de la zona horaria inválido");
-		}
-		ZoneOffset zoneOffset = ZoneOffset.of(zonaHoraria.substring(3));
-		return Date.from(
-			LocalDate.now(zoneOffset)
-				.plusDays(1)
-				.atStartOfDay(zoneOffset)
-				.toInstant()
-		);
-	}
-
-	public static boolean validarZonaHoraria(String zona) {
-		if (zona == null || !zona.matches("^GMT[+-]\\d{2}:\\d{2}$")) {
-			return false;
-		}
-
-		try {
-			ZoneOffset.of(zona.substring(3));
-			return true;
-		} catch (DateTimeException e) {
-			return false;
-		}
+	public static Date getManianaDate() throws SGPException {
+		Date hoy = now();
+		resetTime(hoy);
+		Date maniana = addDay(hoy, 1);
+		return maniana;
 	}
 
 	public static List<String> getDiasSemana() {
